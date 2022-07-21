@@ -1,12 +1,14 @@
 /** @format */
 
 import React from 'react';
+import Board from './components/Board';
+import './styles/root.scss';
 
 const App = () => (
-	<>
-		<h1>Welcome to React Vite Micro App!</h1>
-		<p>Hard to get more minimal than this React app.</p>
-	</>
+  <div className="app">
+    <h1>Tic tac toe</h1>
+    <Board />
+  </div>
 );
 
 export default App;
