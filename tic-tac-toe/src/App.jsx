@@ -1,31 +1,32 @@
-/** @format */
-
 import React, { useState } from 'react';
 import Board from './components/Board.jsx';
 import History from './components/History.jsx';
 import StatusMessage from './components/StatusMessage.jsx';
-import { calculateWinner } from './helpers';
+import { calculateWinner } from './helpers.js';
+
 import './styles/root.scss';
 
 const NEW_GAME = [{ board: Array(9).fill(null), isXNext: true }];
 
 const App = () => {
   const [history, setHistory] = useState(NEW_GAME);
-
   const [currentMove, setCurrentMove] = useState(0);
-
   const current = history[currentMove];
 
   const { winner, winningSquares } = calculateWinner(current.board);
 
   const handleSquareClick = position => {
-    if (current.board[position] || winner) return;
+    if (current.board[position] || winner) {
+      return;
+    }
 
     setHistory(prev => {
       const last = prev[prev.length - 1];
 
       const newBoard = last.board.map((square, pos) => {
-        if (pos === position) return last.isXNext ? 'X' : '0';
+        if (pos === position) {
+          return last.isXNext ? 'X' : 'O';
+        }
 
         return square;
       });
@@ -41,23 +42,31 @@ const App = () => {
   };
 
   const onNewGame = () => {
-    NEW_GAME;
+    setHistory(NEW_GAME);
     setCurrentMove(0);
   };
 
   return (
     <div className="app">
-      <h1>Tic tac toe</h1>
+      <h1>
+        TIC <span className="text-green">TAC</span> TOE
+      </h1>
       <StatusMessage winner={winner} current={current} />
       <Board
-        winningSquares={winningSquares}
         board={current.board}
         handleSquareClick={handleSquareClick}
+        winningSquares={winningSquares}
       />
-      <button type="button" onClick={onNewGame}>
+      <button
+        type="button"
+        onClick={onNewGame}
+        className={`btn-reset ${winner ? 'active' : ''}`}
+      >
         Start new game
       </button>
+      <h2 style={{ fontWeight: 'normal' }}>Current game history</h2>
       <History history={history} moveTo={moveTo} currentMove={currentMove} />
+      <div className="bg-balls" />
     </div>
   );
 };
