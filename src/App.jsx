@@ -3,6 +3,7 @@ import Board from './components/Board.jsx';
 import History from './components/History.jsx';
 import StatusMessage from './components/StatusMessage.jsx';
 import { calculateWinner } from './helpers.js';
+// import '../bg_animate.js';
 
 import './styles/root.scss';
 
