@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import Board from './components/Board';
-import History from './components/History';
-import StatusMessage from './components/StatusMessage';
-import { calculateWinner } from './helpers';
+import Board from './components/Board.jsx';
+import History from './components/History.jsx';
+import StatusMessage from './components/StatusMessage.jsx';
+import { calculateWinner } from './helpers.js';
+// import '../bg_animate.js';
 
 import './styles/root.scss';
 
@@ -66,7 +67,6 @@ const App = () => {
       </button>
       <h2 style={{ fontWeight: 'normal' }}>Current game history</h2>
       <History history={history} moveTo={moveTo} currentMove={currentMove} />
-      <div className="bg-balls" />
     </div>
   );
 };

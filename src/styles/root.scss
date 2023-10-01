@@ -102,11 +102,13 @@ button {
 }
 
 .board {
+  overflow: hidden;
   .board-row {
     display: flex;
+    position: relative;
     flex-direction: row;
     border-bottom: 2px solid #fff;
-    &:last-child {
+    &:last-of-type {
       border-bottom: none;
     }
     .square {
@@ -117,7 +119,7 @@ button {
       padding: 0;
       overflow: hidden;
       transition: all 0.2s;
-      &:last-child {
+      &:last-of-type {
         border-right: none;
       }
       &.winning {
@@ -244,4 +246,23 @@ button {
     transform: scale(20) rotate(960deg) translate(-50%, -50%);
     opacity: 0;
   }
+}
+
+.winning-line {
+  position: absolute;
+  // transition: all 0.5s ease-in-out;
+  // animation: drawLine 0.5s forwards; /* 0.5s è la durata dell'animazione */
+}
+
+// @keyframes drawLine {
+//   from {
+//     height: 0;
+//   }
+//   to {
+//     height: 100%; /* o un valore fisso, es. 300px, se 100% non funziona come previsto */
+//   }
+// }
+
+.winning-line {
+  animation: drawLine 0.5s 0.5s ease-in-out;
 }
